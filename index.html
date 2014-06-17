@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Logfilter : easy portable bashscript to monitor syslog- and logfile events with on-the-fly filtering and highlight features" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Logfilter</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/coderofsalvation/logfilter">View on GitHub</a>
+
+          <h1 id="project_title">Logfilter</h1>
+          <h2 id="project_tagline">easy portable bashscript to monitor syslog- and logfile events with on-the-fly filtering and highlight features</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/coderofsalvation/logfilter/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/coderofsalvation/logfilter/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="logfilter" class="anchor" href="#logfilter"><span class="octicon octicon-link"></span></a>logfilter</h1>
+
+<p>easy portable bashscript to monitor syslog- and logfile events with on-the-fly filtering and highlight features</p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<pre><code>./logfilter /var/log/syslog
+</code></pre>
+
+<h3>
+<a name="the-problem" class="anchor" href="#the-problem"><span class="octicon octicon-link"></span></a>The problem</h3>
+
+<p>'tail -f' is nice to monitor logfiles, but its far from ideal.
+Especially when dealing with large volumes of data.
+Logfilter prevents you from going crazy with bashoneliners to get some sensible output.</p>
+
+<p>Basically you will be going from this:</p>
+
+<p><img alt="tail -f alternative" src="https://raw.githubusercontent.com/coderofsalvation/logfilter/master/.res/tailf.png"></p>
+
+<p>To this:</p>
+
+<p><img alt="logfilter is a tail -f alternative" src="https://raw.githubusercontent.com/coderofsalvation/logfilter/master/.res/logfilter.png"></p>
+
+<h3>
+<a name="on-the-fly-comfort" class="anchor" href="#on-the-fly-comfort"><span class="octicon octicon-link"></span></a>On the fly comfort</h3>
+
+<p>This portable utility was written to overcome the repetitiveness of fiddling with grep and tail -f.
+Logfilter is a wrapper for 'tail -f' and grep.</p>
+
+<h3>
+<a name="filtering-incoming-data" class="anchor" href="#filtering-incoming-data"><span class="octicon octicon-link"></span></a>Filtering incoming data</h3>
+
+<p>At any time you can press CTRL-C and modify your incoming regex:</p>
+
+<p><img alt="logfilter is a tail -f alternative" src="https://raw.githubusercontent.com/coderofsalvation/logfilter/master/.res/filterin.png"></p>
+
+<h3>
+<a name="filtering-outgoing-data" class="anchor" href="#filtering-outgoing-data"><span class="octicon octicon-link"></span></a>Filtering outgoing data</h3>
+
+<p>Too much data to stdout? At any time you can press CTRL-C and modify your outgoing regex:</p>
+
+<p><img alt="logfilter is a tail -f alternative" src="https://raw.githubusercontent.com/coderofsalvation/logfilter/master/.res/filterout.png"></p>
+
+<h3>
+<a name="highlighting-data" class="anchor" href="#highlighting-data"><span class="octicon octicon-link"></span></a>Highlighting data</h3>
+
+<p>Want to have warnings/errors to standout? Press CTRL-C and modify your highlighting regex:</p>
+
+<p><img alt="logfilter is a tail -f alternative" src="https://raw.githubusercontent.com/coderofsalvation/logfilter/master/.res/highlight.png"></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Logfilter maintained by <a href="https://github.com/coderofsalvation">coderofsalvation</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
