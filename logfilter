@@ -1,0 +1,77 @@
+#!/bin/bash 
+# author: Leon van Kammen / Coder of Salvation 2014
+# 
+# logconsole: simple filtering/viewing/following/ignoring of logfiles
+#
+# usage: ./logfilter /var/log/syslog 
+#
+# press ctrl-c ot enter interactive mode
+# press the up-arrows to see example filters, and press enter to start logging again
+
+cache=()
+pids=()
+logfile="$1"
+lines=$(tput lines)
+columns=$(tput cols)
+lines_window=$((lines-5))
+filterin="(.)"
+filterout="(1233)"
+highlight="(kernel|CRON|warning|error|WARNING|ERROR|memory)"
+TMPFILE="/tmp/.logconsole.$(whoami)"
+STATUS="tail"
+rm $TMPFILE.*
+
+# here you can define your preset calls
+# the variables can be insert directly in the console ('foo=flop' e.g.)
+cache+=('highlight="(kernel|CRON|warning|error|WARNING|ERROR|memory)"')
+cache+=('filterin="(foo|bar)"')
+cache+=('filterout="(info|debug)"')
+
+# lets teach some history 
+teach(){
+  for line in "${cache[@]}"; do
+    history -s -- "$line"
+  done
+}
+
+istyping(){
+  [[ "$1" == true  ]] && touch $TMPFILE.typing
+  [[ "$1" == false ]] && [[ -f "$TMPFILE.typing" ]] && rm $TMPFILE.typing
+  [[ -f "$TMPFILE" ]] && return 0 || return 1;
+}
+
+subconsole(){
+  istyping true
+  echo -e "\nquit  = ctrl-c or 'exit'\nstart = enter"
+  echo -e "\npress arrow up to cycle suggestions\n"
+  while IFS="" read -r -e -d $'\n' -p "$2> " line; do
+    [[ "${#line}" == 0 ]] && break;
+    [[ "$line" =~ "=" ]] && eval "$line" || "$line"
+    history -s "$line" # lets not add performed command to history
+  done
+  istyping false
+}
+
+filter(){
+  CRED=$(echo -e '\e[0;31m')
+  CRES=$(echo -e '\e[0m')
+  cat - | while read line; do 
+    if ! istyping; then  
+      echo -e "$line" | grep -vE "$filterout" | grep -E "$filterin" | sed -r "s/$highlight/$CRED""&""$CRES/g"
+    fi
+  done
+}
+
+follow(){
+  istyping false
+  tail -n$lines_window -f "$logfile" | filter | cut -c 1-$(( $(tput cols)-1))  
+}
+
+start(){
+  subconsole
+  follow
+  start # quickndirty mainloop
+}
+
+trap start 2 # catch ctrl-C
+teach; start
