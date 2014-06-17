@@ -42,4 +42,4 @@ Too much data to stdout? At any time you can press CTRL-C and modify your outgoi
 
 Want to have warnings/errors to standout? Press CTRL-C and modify your highlighting regex:
   
-  <img alt="logfilter is a tail -f alternative" src="https://raw.githubusercontent.com/coderofsalvation/logfilter/master/.res/filterout.png"/>
+  <img alt="logfilter is a tail -f alternative" src="https://raw.githubusercontent.com/coderofsalvation/logfilter/master/.res/highlight.png"/>
