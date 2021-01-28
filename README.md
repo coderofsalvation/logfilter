@@ -1,6 +1,8 @@
 logfilter
 =========
 
+> DEPRECATED: I found https://github.com/nojhan/colout to be a superior implementation of this concept.
+
 easy portable bashscript to monitor syslog- and logfile events with on-the-fly filtering and highlight features
 
 ### Usage
